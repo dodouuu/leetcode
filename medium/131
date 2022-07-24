@@ -1,0 +1,56 @@
+let  s = "aab"
+
+
+const Len = 17
+let dp = Array(Len).fill().map(() => Array(Len).fill(null));
+let pal = []
+let ans = []
+
+var partition = function(s) {
+  const l = s.length
+
+  dp = Array(Len).fill().map(() => Array(Len).fill(null));
+  pal.length=0
+  ans.length=0
+  
+  dfs(0, s, l)
+  return ans
+};
+
+function dfs(j, s, l) {
+  // console.log(j,s,l)
+  if(j>=l) {
+    ans.push(Array.from(pal))
+    // console.log('ans=')
+    // console.log(ans)
+    return
+  }
+  for(let i=j; i<l; i++) {
+    const str = s.slice(j,i+1)
+    // console.log('str='+str)
+
+    if( isPal( str,j,i ) ) {
+      if(dp[j][i]===null) dp[j][i] = true
+      // console.log('str='+str+'=isPal')
+
+      
+      pal.push( str )
+      dfs(i+1, s, l)
+      pal.pop()
+      
+      
+    } else {
+      if(dp[j][i]===null) dp[j][i] = false
+    }
+  }
+}
+function isPal(str,x,y) {
+  if(dp[x][y]!==null) return dp[x][y]
+  
+  for(let i=0, j=str.length-1; i<j; i++, j-- ) {
+    if(str[i] !== str[j]) return dp[x][y]=false
+  }
+  return dp[x][y]=true
+}
+
+partition(s)

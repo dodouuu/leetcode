@@ -1,0 +1,20 @@
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfTwo = function (n) {
+  if (n === 1) return true
+  if (n === 0) return false
+  if (n < 0) return false
+  let a = 0
+  do {
+    a = n % 2
+    if (a === 1) return false
+    n /= 2
+  } while (n > 1)
+  if (a === 0) return true
+  else return false
+};
+ 
+const n = 16
+isPowerOfTwo(n)
