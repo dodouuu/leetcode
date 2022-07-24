@@ -1,0 +1,23 @@
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function (s, t) {
+  const sArray = s.split("")
+  sArray.sort()
+  const tArray = t.split("")
+  tArray.sort()
+  const sl = sArray.length
+  const tl = tArray.length
+  if(sl !== tl)return false
+  for(let i=0; i<sl; i++) {
+    if (sArray[i]!==tArray[i])return false
+  }
+  return true
+}
+ 
+const s = "anagram"
+const t = "nagaram"
+ 
+console.log("ans=", isAnagram(s,t))
