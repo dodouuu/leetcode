@@ -1,25 +1,29 @@
 /**
  * @param {number[]} nums
+ * @param {number} target
  * @return {number}
  */
-var removeDuplicates = function (nums) {
-  const l = nums.length
-  let k=0
-  let a={}
-  const max = 101
-  for (let i = 0; i < l; i++) {
-    if (a[nums[i]] === undefined) {
-      a[nums[i]] = 1
-      k++
-    }
-    else {
-      nums[i]=max
+var searchInsert = function (nums, target) {
+  let left = 0
+  let right = nums.length - 1
+  let mid = -1
+  while (left <= right) {
+    mid = Math.floor( (left + right) / 2 )
+
+    if (nums[mid] > target) {
+      right = mid - 1;
+    } else if (nums[mid] < target) {
+      left = mid + 1;
+    } else {
+      break
     }
   }
-  nums.sort((a,b)=>a-b)
-  return k
-};
+  if(nums[mid] > target) return mid
+  else if (nums[mid] < target) return mid+1
+  else return mid
+}
 
-const nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+const nums = [1, 3, 5, 6]
+const target = 4
 
-removeDuplicates(nums)
+console.log("ans=",searchInsert(nums, target))
