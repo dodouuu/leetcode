@@ -1,20 +1,25 @@
 /**
  * @param {number[]} nums
- * @return {boolean}
+ * @return {number}
  */
-var containsDuplicate = function (nums) {
+var removeDuplicates = function (nums) {
   const l = nums.length
-  let a = {}
+  let k=0
+  let a={}
+  const max = 101
   for (let i = 0; i < l; i++) {
     if (a[nums[i]] === undefined) {
       a[nums[i]] = 1
-    } else if (a[nums[i]] === 1) {
-      return true
+      k++
+    }
+    else {
+      nums[i]=max
     }
   }
-  return false
+  nums.sort((a,b)=>a-b)
+  return k
 };
 
-const nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
+const nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
 
-containsDuplicate(nums)
+removeDuplicates(nums)
