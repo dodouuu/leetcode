@@ -1,0 +1,24 @@
+if(x<0) return false
+let str = x.toString(10)
+let l = str.length
+
+let middle = Math.floor(l/2)
+
+let m=0
+let n=0
+if(l%2===1) {
+  m=middle-1
+  n=middle+1
+} else {
+  m=middle-1
+  n=middle
+}
+for(let i=0, j=l-1; i<middle; i++,j--,m--,n++) {
+  if( str[i]!==str[j] ) {
+    return false
+  }
+  if( m>=0 && n<l && str[m]!==str[n]) {
+    return false
+  }
+}
+return true

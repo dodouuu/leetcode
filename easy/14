@@ -1,0 +1,34 @@
+let strs = ["flower","flow","flight"]
+
+let ans = ''
+let lOfAns = 0
+
+let l = strs.length
+let arr = Array(200).fill().map(() => Array(200).fill());
+
+let minL = Infinity
+let tempL = 0
+for(let i=0; i<l; i++) {
+  arr[i] = Array.from(strs[i])
+  tempL = strs[i].length
+  if(tempL < minL) minL = tempL
+  // console.log(arr[i])
+}
+
+let tempStr = ''
+let allMatch = true
+for(let i=0; i<tempL; i++) {
+  tempStr = arr[0][i]
+  for(let j=1; j<l; j++) {
+    if(arr[j][i] !== tempStr) {
+      i=tempL
+      allMatch = false
+      break
+    }
+  }
+  if(allMatch === true) {
+    ans += tempStr 
+  }
+}
+// console.log(ans)
+return ans
