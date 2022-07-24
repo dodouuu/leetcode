@@ -1,0 +1,10 @@
+let nums3 = nums1.concat(nums2)
+nums3.sort((a,b)=>a-b)
+
+let l = nums3.length
+let middle = Math.floor(l/2)
+if(l%2===1) {
+  return nums3[middle]
+} else {
+  return (nums3[middle-1]+nums3[middle])/2
+}

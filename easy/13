@@ -1,0 +1,69 @@
+const s = "MCMXCIV"
+
+// Algorithm:
+
+// if I +1
+// if V +5
+// if I -1
+
+// if X +10
+// if L +50
+// if X -10
+
+// if C +100
+// if D +500
+// if C -100
+
+// if M +1000
+
+let l = s.length;
+
+let passV = false
+let passL = false
+let passD = false
+
+let sum = 0
+
+while(1){
+  l--
+  // console.log('sum='+sum)
+  if(l<0) return sum
+  switch (s[l]) {
+    case 'I': 
+      if(passV) sum-=1
+      else sum+=1
+      break;
+    case 'V':
+      sum+=5
+      passV = true
+      break
+    case 'X':
+      passV = true
+      if(passL) sum-=10
+      else sum+=10
+      break
+    case 'L':
+      sum+=50
+      passV = true
+      passL = true
+      break
+    case 'C':
+      passV = true
+      passL = true
+      if(passD) sum-=100
+      else sum+=100
+      break
+    case 'D':
+      sum+=500
+      passV = true
+      passL = true
+      passD = true
+      break
+    case 'M':
+      passV = true
+      passL = true
+      passD = true
+      sum+=1000
+      break
+  }
+}

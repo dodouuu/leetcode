@@ -1,0 +1,39 @@
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+    const l = nums.length
+    let numsCopy1 = [];
+
+    class numArr {
+        constructor(index, value) {
+            this.index = index;
+            this.value = value;
+        }
+    }
+
+    for (let i = 0; i < l; i++) {
+        const x = new numArr(i, nums[i])
+        numsCopy1.push(x)
+    }
+
+    numsCopy1.sort((a, b) => a.value - b.value)
+
+    const arr = [];
+    let sum = 0;
+    for (let i = 0, j = l - 1; ;) {
+        sum = numsCopy1[i].value + numsCopy1[j].value;
+        if (sum === target) {
+            arr.push(numsCopy1[i].index, numsCopy1[j].index)
+            return arr
+        }
+        else if (sum > target) {
+            j--
+        }
+        else if (sum < target) {
+            i++
+        }
+    }
+};
