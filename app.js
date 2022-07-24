@@ -1,29 +1,23 @@
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
  */
-var searchInsert = function (nums, target) {
-  let left = 0
-  let right = nums.length - 1
-  let mid = -1
-  while (left <= right) {
-    mid = Math.floor( (left + right) / 2 )
-
-    if (nums[mid] > target) {
-      right = mid - 1;
-    } else if (nums[mid] < target) {
-      left = mid + 1;
-    } else {
-      break
-    }
+var isAnagram = function (s, t) {
+  const sArray = s.split("")
+  sArray.sort()
+  const tArray = t.split("")
+  tArray.sort()
+  const sl = sArray.length
+  const tl = tArray.length
+  if(sl !== tl)return false
+  for(let i=0; i<sl; i++) {
+    if (sArray[i]!==tArray[i])return false
   }
-  if(nums[mid] > target) return mid
-  else if (nums[mid] < target) return mid+1
-  else return mid
+  return true
 }
 
-const nums = [1, 3, 5, 6]
-const target = 4
+const s = "anagram"
+const t = "nagaram"
 
-console.log("ans=",searchInsert(nums, target))
+console.log("ans=", isAnagram(s,t))
