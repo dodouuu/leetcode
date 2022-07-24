@@ -1,23 +1,30 @@
 /**
- * @param {number} n
- * @return {boolean}
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
  */
-var isUgly = function (n) {
-  let a = 0
-  let tempN = 0
-  if (n < 0) return false
-  do {
-    if (n === 1) return true
-    tempN = n
-    a = n % 2
-    if (a === 0) n /= 2
-    a = n % 3
-    if (a === 0) n /= 3
-    a = n % 5
-    if (a === 0) n /= 5
-    if (tempN === n) return false
-  } while (n > 1)
-  return true
+var moveZeroes = function (nums) {
+  let temp = -1
+  const l = nums.length
+  // let numOfZero = 0
+  // for (let i = 0; i < l; i++) {
+  //   if (nums[i] === 0) numOfZero++
+  // }
+  // if(numOfZero===0) return
+
+  for (let i = 0; i < l; i++) {
+    if (nums[i] === 0) {
+      for (let j = i + 1; j < l; j++) {
+        if (nums[j] !== 0) {
+          temp = nums[j]
+          nums[j] = nums[i]
+          nums[i] = temp
+          break
+        }
+      }
+    }
+  }
 };
 
-isUgly(6)
+const nums = [0, 1, 0, 3, 12]
+moveZeroes(nums)
+// console.log('nums=', nums)
