@@ -2,19 +2,22 @@
  * @param {number} n
  * @return {boolean}
  */
-var isPowerOfTwo = function (n) {
-  if (n === 1) return true
-  if (n === 0) return false
-  if (n < 0) return false
+var isUgly = function (n) {
   let a = 0
+  let tempN = 0
+  if (n < 0) return false
   do {
+    if (n === 1) return true
+    tempN = n
     a = n % 2
-    if (a === 1) return false
-    n /= 2
+    if (a === 0) n /= 2
+    a = n % 3
+    if (a === 0) n /= 3
+    a = n % 5
+    if (a === 0) n /= 5
+    if (tempN === n) return false
   } while (n > 1)
-  if (a === 0) return true
-  else return false
+  return true
 };
 
-const n = 16
-isPowerOfTwo(n)
+isUgly(6)
