@@ -1,23 +1,46 @@
 /**
- * @param {number[]} nums
+ * @param {number[]} prices
  * @return {number}
  */
-var majorityElement = function (nums) {
+const MAX = 100001
+var maxProfit = function (prices) {
+  const l = prices.length
+  let maxP = 0
+  let max = new Array(l).fill(0)
+  let tempMax = 0
 
-  let a={}
-  const n = nums.length
-  const majority = Math.floor(n/2)
-  for(let i=0; i<n; i++) {
-    if(a[nums[i]]===undefined) {
-      a[nums[i]]=1
-      if (a[nums[i]] > majority) return nums[i]
-    } else {
-      a[nums[i]]++
-      if (a[nums[i]] > majority) return nums[i]
+  let min = new Array(l).fill(0)
+  let tempMin = MAX
+
+  for (let i = l-1; i >=0; i--) {
+    if(prices[i] > tempMax) {
+      tempMax = prices[i]
+    }
+    max[i] = tempMax
+  }
+  // console.log('max=', max)
+
+  for (let i = 0; i < l; i++) {
+    if(prices[i] < tempMin) {
+      tempMin = prices[i]
+    }
+    min[i] = tempMin
+  }
+  // console.log('min=', min)
+
+  for(let i=0; i<l; i++) {
+    if (max[i] - min[i] < maxP) break
+    for(let j=i+1; j<l; j++) {
+      if (max[j] - min[j] <= maxP) break
+      const dif = prices[j] - prices[i]
+      if(dif>maxP) maxP = dif
     }
   }
-}
+  return maxP
+};
 
-const nums = [2, 2, 1, 1, 1, 2, 2]
+const prices = [7, 1, 5, 3, 6, 4]
+// const prices = [7, 6, 4, 3, 1]
 
-console.log("ans=", majorityElement(nums))
+console.log("ans=", maxProfit(prices))
+
