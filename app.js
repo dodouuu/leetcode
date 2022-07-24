@@ -1,3 +1,4 @@
+
 let Twitter = function () {
   this.timeStamp = 0
   this.posts = {}
@@ -6,62 +7,51 @@ let Twitter = function () {
 
 Twitter.prototype.postTweet = function (userId, tweetId) {
   // console.log('this=', this)
-  // console.log('this.posts[userId]=', this.posts[userId])
+
   if (this.posts[userId] === undefined) {
     this.posts[userId] = []
   }
-  // console.log('this.posts[userId]=', this.posts[userId])
+
   this.posts[userId].push(
     {
       timeStamp: ++this.timeStamp,
-      // tweetId: Number(tweetId)
       tweetId
     }
   )
-  console.log('user=', userId, 'posts=', this.posts[userId])
+  // console.log('user=', userId, 'posts=', this.posts[userId])
 }
 
 Twitter.prototype.getNewsFeed = function (userId) {
-  // console.log('this=', this)
   let arrayNewsFeed = []
 
   if (this.follows[userId] !== undefined) {
     this.follows[userId].forEach(followee => {
-      // arrayNewsFeed.push([...this.posts[followee]])
       if (this.posts[followee] !== undefined) {
-        arrayNewsFeed = [...this.posts[followee]]
+        arrayNewsFeed = arrayNewsFeed.concat(this.posts[followee])
       }
     })
   }
-  // arrayNewsFeed.push([...this.posts[userId]])
-  // arrayNewsFeed = [...this.posts[userId]]
+
   if (this.posts[userId] !== undefined) {
     arrayNewsFeed = arrayNewsFeed.concat(this.posts[userId])
   }
 
-  // console.log('arrayNewsFeed=', arrayNewsFeed)
-
-  // arrayNewsFeed.sort((a, b) => {
-  //   return a.timeStamp - b.timeStamp
-  // })
-  if (arrayNewsFeed.length > 0) {
+  if (arrayNewsFeed.length > 1) {
     arrayNewsFeed.sort(compareFunction)
   }
 
-  // console.log('arrayNewsFeed=', arrayNewsFeed)
-
   let arrayTweetId = []
-  // console.log('arrayNewsFeed[2]=', arrayNewsFeed[2])
+
   for (let i = 0; i < 10 && arrayNewsFeed[i] !== undefined; i++) {
     arrayTweetId.push(arrayNewsFeed[i].tweetId)
   }
+
   console.log(arrayTweetId)
 
   return arrayTweetId
 }
 function compareFunction(a, b) {
   return b.timeStamp - a.timeStamp
-  // return a.timeStamp - b.timeStamp
 }
 
 Twitter.prototype.follow = function (followerId, followeeId) {
@@ -86,7 +76,13 @@ Twitter.prototype.unfollow = function (followerId, followeeId) {
   this.follows[followerId].splice(index, 1)
 }
 
-let twitter = new Twitter()
+const twitter = new Twitter()
+
+// if (this.follows[2] !== undefined) {
+//   if (this.follows[2].length)
+//     console.log('first followeeId of 2=', this.follows[2][0])
+// }
+
 // twitter.postTweet(1, 5)
 // twitter.follow(1, 2)
 // twitter.postTweet(2, 6)
@@ -121,7 +117,7 @@ twitter.follow(5, 1)
 twitter.follow(5, 2)
 
 twitter.getNewsFeed(1)
-// twitter.getNewsFeed(2)
-// twitter.getNewsFeed(3)
-// twitter.getNewsFeed(4)
-// twitter.getNewsFeed(5)
+twitter.getNewsFeed(2)
+twitter.getNewsFeed(3)
+twitter.getNewsFeed(4)
+twitter.getNewsFeed(5)
