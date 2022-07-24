@@ -1,0 +1,104 @@
+let L=17
+let N=100001
+
+let bits = Array(L).fill(0)
+let numOf1 = Array(N).fill(0)
+
+
+let binaryStr = '0' // 要先reverse
+let afterReverse = ''
+
+let count1 = 0
+let carry = 0
+let len = binaryStr.length
+let temp = 0
+
+numOf1[0]=0
+
+afterReverse = reverse(binaryStr)
+
+// console.log('after='+afterReverse)
+
+let ans = addOne(afterReverse, 1)
+// console.log('ans str='+ans)
+// console.log(`numOf1[${1}]=${numOf1[1]}`)
+// console.log('numOf1='+numOf1[1])
+// console.log('')
+
+for(let i=2; i<N; i++) {
+  ans = addOne(ans, i)
+  // console.log('ans str='+ans)
+  // console.log(`numOf1[${i}]=${numOf1[i]}`)
+  // console.log('numOf1='+numOf1[i])
+  // console.log('')
+}
+
+function reverse(str){
+  const l = str.length
+  let ans = ''
+  for(let i=l-1; i>=0; i--) {
+    ans+=str[i]
+  }
+  return ans
+}
+
+function addOne(str, index) {
+  
+  // console.log('now str='+str)
+  // console.log('now count1='+count1)
+  len = str.length
+  
+  let sumStr = ''
+  temp = Number(str[0]) + 1
+  // console.log('carry='+carry)
+  // console.log('str[i]='+str[len-1])
+  // console.log('temp='+temp)
+  if(temp>1) {
+    sumStr += '0'
+    carry = 1
+    
+  } else {
+    sumStr += temp.toString()
+    carry = 0
+    
+  }
+  if(str[0]<sumStr[0]) count1++
+  if(str[0]>sumStr[0]) count1--
+  // console.log('carry='+carry)
+  
+  for(let i=1; i<len; i++) {
+    // console.log('str[i]='+str[i])
+    temp = Number(str[i]) + carry
+    // console.log('temp='+temp)
+    
+    if(temp>1) {
+      sumStr += '0'
+      carry = 1
+      
+    } else {
+      sumStr += temp.toString()
+      carry = 0
+      
+    }
+
+    if(str[i]<sumStr[i]) count1++
+    if(str[i]>sumStr[i]) count1--
+    // console.log('carry='+carry)
+  }
+
+  if(carry===1) {
+    count1++
+    sumStr += '1'
+  }
+  numOf1[index]=count1
+  return sumStr
+}
+
+
+var countBits = function(n) {
+  const a = []
+  for(let i=0; i<=n; i++) {
+    a.push(numOf1[i])
+  }
+  return a
+};
