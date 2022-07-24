@@ -1,23 +1,23 @@
 /**
- * @param {string} s
- * @param {string} t
- * @return {boolean}
+ * @param {number[]} nums
+ * @return {number}
  */
-var isAnagram = function (s, t) {
-  const sArray = s.split("")
-  sArray.sort()
-  const tArray = t.split("")
-  tArray.sort()
-  const sl = sArray.length
-  const tl = tArray.length
-  if(sl !== tl)return false
-  for(let i=0; i<sl; i++) {
-    if (sArray[i]!==tArray[i])return false
+var majorityElement = function (nums) {
+
+  let a={}
+  const n = nums.length
+  const majority = Math.floor(n/2)
+  for(let i=0; i<n; i++) {
+    if(a[nums[i]]===undefined) {
+      a[nums[i]]=1
+      if (a[nums[i]] > majority) return nums[i]
+    } else {
+      a[nums[i]]++
+      if (a[nums[i]] > majority) return nums[i]
+    }
   }
-  return true
 }
 
-const s = "anagram"
-const t = "nagaram"
+const nums = [2, 2, 1, 1, 1, 2, 2]
 
-console.log("ans=", isAnagram(s,t))
+console.log("ans=", majorityElement(nums))
