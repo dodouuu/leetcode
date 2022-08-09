@@ -28,12 +28,3 @@ function recursive(operator, index, sum, l, nums, target) {
     recursive(-1, index + 1, sum, l, nums, target)
   }
 }
-
-let nums = [1, 1, 1, 1, 1], target = 3
-
-findTargetSumWays(nums, target)
-console.log('output=', output)
-
-function print(v1, v2) {
-  console.log(v1, v2)
-}
