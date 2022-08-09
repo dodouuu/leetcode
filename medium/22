@@ -48,7 +48,3 @@ for (let i = 1; i <= 2; i++) {
   console.log(ans[`${i}`])
 }
 generateParenthesis(8)
-
-function print(temp, tempPal) {
-  console.log('temp=', temp, 'tempPal=', tempPal)
-}
