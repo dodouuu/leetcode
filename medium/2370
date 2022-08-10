@@ -29,15 +29,3 @@ function recursive(s, k, index, lastChar, dp) {
 function max(a, b) {
   return a>b ? a : b
 }
-
-// const s = "dyyonfvzsretqxucmavxegvlnnjubqnwrhwikmnnrpzdovjxqdsatwzpdjdsneyqvtvorlwbkb"
-const s = "azaza"
-
-const k = 25
-
-let output = longestIdealString(s,k)
-console.log('output=', output)
-
-function print(v1, v2,v3,v4,v5) {
-  console.log(v1, v2, v3, v4,v5)
-}
