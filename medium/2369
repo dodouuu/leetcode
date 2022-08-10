@@ -2,7 +2,6 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-
 var validPartition = function (nums) {
   const l = nums.length
   let dp = Array(l).fill(-1)
