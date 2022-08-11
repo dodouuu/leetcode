@@ -1,0 +1,57 @@
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+const water = 1
+const wall = 2
+const air = 3
+var trap = function (height) {
+  const n = height.length
+  let m = 1
+  for (const element of height) {
+    if (element > m) m = element
+  }
+  let map = Array(n).fill().map(() => Array(m).fill(water));
+
+  for (let i = 0; i < n; i++) {
+    const l = height[i]
+    for (let j = 0; j < l; j++) {
+      map[i][j] = wall
+    }
+  }
+  // console.log(map)
+  for (let j = 0; j < m; j++) {
+    let i = 0
+    if (map[i][j] === water) {
+      while (map[i][j] !== wall) {
+        map[i][j] = air
+        i++
+        if(i===n) break
+      }
+
+    }
+    let k = n-1
+    if (map[k][j] === water) {
+      while (map[k][j] !== wall) {
+        map[k][j] = air
+        k--
+        if (k === 0) break
+      }
+    }
+  }
+  // console.log(map)
+
+  let trapped = 0
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (map[i][j] === water) {
+        trapped++
+      }
+    }
+  }
+  return trapped
+};
+
+const height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+
+console.log(trap(height))
