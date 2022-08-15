@@ -8,7 +8,7 @@ let times = 0
 var maxResult = function (nums, k) {
   times = 0
   if(nums.length > 90000) {
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = 0; i < nums.length && times<10000; i++) {
       if (nums[i] === -1) times++
     }
   }
@@ -139,7 +139,7 @@ function recursive(score, i, nums, k, dp, originIndex) {
   let j = i + k
   if (j >= nums.length) j = nums.length - 1
   for (; j >= i + 1; j--) {
-
+    
     if (originIndex[j] > originIndex[i] + k) continue
 
     if (dp[j] === undefined) {
@@ -153,14 +153,9 @@ function recursive(score, i, nums, k, dp, originIndex) {
       if (dp[j] + score > dp[i]) {
         dp[i] = dp[j] + score
       }
-      if(dp[0]!==undefined && times>30000) return dp[i]
+      if (dp[0] !== undefined && times >= 10000) return dp[i]
     }
   
   }
   return dp[i]
 }
-
-const start = new Date().getTime();
-console.log(maxResult(nums, k))
-const end = new Date().getTime();
-console.log('time=', end - start)

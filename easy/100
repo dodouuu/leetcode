@@ -56,9 +56,3 @@ function preorderTraversal(p, q) {
 var isSameTree = function (p, q) {
   return preorderTraversal(p, q)
 }
-
-
-const start = new Date().getTime();
-console.log(isSameTree(p,q))
-const end = new Date().getTime();
-console.log('time=', end - start)
