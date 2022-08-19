@@ -46,8 +46,3 @@ var isSymmetric = function (root) {
 
   return true
 }
-
-const start = new Date().getTime();
-console.log(isSameTree(p,q))
-const end = new Date().getTime();
-console.log('time=', end - start)
