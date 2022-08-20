@@ -38,33 +38,3 @@ function bfs(node) {
 
   return depth
 }
-
-
-function TreeNode(val, left, right) {
-  this.val = (val === undefined ? 0 : val)
-  this.left = (left === undefined ? null : left)
-  this.right = (right === undefined ? null : right)
-}
-
-// let node3 = new TreeNode(5)
-
-let node2 = new TreeNode(5)
-
-let node1 = new TreeNode(4)
-
-
-let left = new TreeNode(2, node1)
-let right = new TreeNode(3, undefined, node2)
-
-let root = new TreeNode(1, left, right)
-
-// console.log(left)
-// console.log(right)
-console.log(root)
-
-const start = new Date().getTime();
-
-console.log(zigzagLevelOrder(root))
-
-const end = new Date().getTime();
-console.log('time=', end - start)
