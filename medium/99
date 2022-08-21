@@ -14,7 +14,7 @@
 let firstWrong = undefined
 let secondWrong = undefined
 let lastNode = undefined
-const minVal = Math.pow(-2,31)-1
+const minVal = Math.pow(-2, 31) - 1
 
 var recoverTree = function (root) {
   firstWrong = undefined
@@ -27,7 +27,7 @@ var recoverTree = function (root) {
 }
 
 function dfs(node) {
-  if (node===null) {
+  if (node === null) {
     return
   }
   dfs(node.left)

@@ -15,7 +15,7 @@ let ans = []
 
 var findMode = function (root) {
   ans = []
-  const array = dfs(root, undefined)
+  const array = dfs(root)
   const l = array. length
 
   let duplicates = {}
