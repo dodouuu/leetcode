@@ -65,12 +65,3 @@ function countWeak(password) {
     }
   }
 }
-
-const password = "aaaaabbbb1234567890ABA"
-console.log('length=', password.length)
-
-console.log('strongPasswordChecker=', strongPasswordChecker(password))
-
-console.log('replace=', replace)
-console.log('one=', one)
-console.log('two=', two)
